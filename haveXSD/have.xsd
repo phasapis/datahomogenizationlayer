@@ -1,0 +1,949 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xnal="urn:oasis:names:tc:ciq:xnal:3" xmlns:xpil="urn:oasis:names:tc:ciq:xpil:3" xmlns:xal="urn:oasis:names:tc:ciq:xal:3" xmlns:xnl="urn:oasis:names:tc:ciq:xnl:3" xmlns:geo-oasis="urn:oasis:names:tc:emergency:EDXL:HAVE:1.0:geo-oasis" xmlns="urn:oasis:names:tc:emergency:EDXL:HAVE:1.0" xmlns:ns1="urn:oasis:names:tc:emergency:EDXL:HAVE:1.0:geo-oasis" targetNamespace="urn:oasis:names:tc:emergency:EDXL:HAVE:1.0" elementFormDefault="qualified" attributeFormDefault="qualified">
+	<xs:import namespace="urn:oasis:names:tc:ciq:xpil:3" schemaLocation="xPIL.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:emergency:EDXL:HAVE:1.0:geo-oasis" schemaLocation="geo-oasis.xsd"/>
+	<xs:element name="HospitalStatus">
+		<xs:annotation>
+			<xs:documentation>The top level container element for reporting status of any number of hospitals. The EDXL-HAVE has no independent routing mechanism, so it requires a routing mechanism that is consistent with the EDXL-DE distribution types. It must contain one or more Hospital elements.
+  </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Hospital" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>The container element for reporting status of a hospital. Multiple Instances of the Hospital element MAY occur within the HospitalStatus container element. </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="Organization">
+								<xs:annotation>
+									<xs:documentation>The container element for organization information elements. The generic element Organisation refers to the entity that is providing the data. This generic name is used throughout this document. Typically, this will include hospitals, nursing care centers, trauma centers etc.
+</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="EmergencyDepartmentStatus" type="EmergencyDepartmentStatus" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Report on the emergency department status for the organization.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="HospitalBedCapacityStatus" type="HospitalBedCapacityStatus" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The hospital bed capacity for the organization.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ServiceCoverageStatus" type="ServiceCoverageStatus" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The physician service coverage status for the organization.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="HospitalFacilityStatus" type="HospitalFacilityStatus" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The status of operations for the organization.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="HospitalResourcesStatus" type="HospitalResourcesStatus" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>The status of resources for the organization.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="LastUpdateTime" type="xs:dateTime">
+								<xs:annotation>
+									<xs:documentation>The last time the information was updated.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CommentText" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>One or more comments</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Organization">
+		<xs:annotation>
+			<xs:documentation>The container element for Organization Information and location elements. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="OrganizationInformation" type="OrganizationInformation"/>
+				<xs:element name="OrganizationGeoLocation" type="OrganizationGeoLocation" minOccurs="0"/>
+				<xs:element ref="CommentText" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="OrganizationInformation">
+		<xs:annotation>
+			<xs:documentation>The container element for organization information elements. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="xpil:OrganisationDetailsType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrganizationGeoLocation">
+		<xs:annotation>
+			<xs:documentation>The container element for specifying the geo-coded address. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="geo-oasis:WhereType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EmergencyDepartmentStatus">
+		<xs:annotation>
+			<xs:documentation> The container of all of the elements related to the emergency department status. It describes the ability of this emergency department to treat patients.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="EMSTraffic" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ability of this emergency department to receive patients via emergency medical services.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EMSTrafficStatus" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Identifies the status of EMS traffic operations</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Normal">
+										<xs:annotation>
+											<xs:documentation>Accepting all EMS traffic.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Advisory">
+										<xs:annotation>
+											<xs:documentation>Experiencing specific resource limitations which may affect transport of some EMS traffic.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Closed">
+										<xs:annotation>
+											<xs:documentation>Requesting re-route of EMS traffic to other facilities.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="NotApplicable">
+										<xs:annotation>
+											<xs:documentation>Not Applicable. This hospital does not have an emergency department.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="EMSTrafficReason" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>It is used to report the contributing factor to an EMSTraffic Status.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="CommentText" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="EMSCapacity" type="TriageCount" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The number of each triage patient type the hospital can accept.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMSCensus" type="TriageCount" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The number of each triage patient type the hospital currently has.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMSAmbulanceStatus" type="Offload" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The container element to indicate the status and offload time for air transport capabilities. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EMSAirTransportStatus" type="Offload" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The container element to indicate the status and offload time for ambulance capabilities.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="CommentText" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HospitalBedCapacityStatus">
+		<xs:annotation>
+			<xs:documentation>The container of all of the elements related to the hospital bed capacity and status. For each of the bed types (AdultICU, MedicalSurgical, etc.), if needed, a collection of named sub-types can be provided. The totals of sub-categories SHOULD equal the capacity data specified in the parent.  
+</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BedCapacity" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Container element to identify the number of available beds. Each Bed Type and the sub-categories under it must be encapsulated by a BedCapacity element. Multiple instances of BedCapacity elements are allowed. For example, a hospital may sub-categorize Adult ICU beds into Surgery, Cardiac, General and Neuro. 
+</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="BedType" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Enumerated list of available Bed Types</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="AdultICU">
+										<xs:annotation>
+											<xs:documentation>These can support critically ill or injured patients, including ventilator support.  
+This category includes all major subtypes of ICU beds, including neuro, cardiac, trauma, or medical, with the exception that this category does not include burn ICU beds.
+</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="PediatricICU"/>
+									<xs:enumeration value="NeonatalICU"/>
+									<xs:enumeration value="EmergencyDepartment"/>
+									<xs:enumeration value="NurseryBeds"/>
+									<xs:enumeration value="MedicalSurgical">
+										<xs:annotation>
+											<xs:documentation>These are also thought of as ward beds. These beds may or may not include cardiac telemetry capability. 
+</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="RehabLongTermCare"/>
+									<xs:enumeration value="Burn">
+										<xs:annotation>
+											<xs:documentation>These are thought of as burn ICU beds, either approved by the American Burn Association or self-designated. These beds are NOT to be included in other ICU bed counts.
+</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Pediatrics">
+										<xs:annotation>
+											<xs:documentation>Capacity status for pediatrics beds. These are ward medical/surgical beds for patients 17-years-old and younger.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="AdultPsychiatric">
+										<xs:annotation>
+											<xs:documentation>Capacity status for psychiatric beds. These are ward beds on a closed/locked psychiatric unit or ward beds where a patient will be attended by a sitter. </xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="PediatricPsychiatric"/>
+									<xs:enumeration value="NegativeFlowIsolation">
+										<xs:annotation>
+											<xs:documentation>Capacity status for negative airflow isolation beds. These provide respiratory isolation. NOTE: This value may represent available beds included in the counts of other types. </xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="OtherIsolation">
+										<xs:annotation>
+											<xs:documentation>Capacity status for other isolation beds. These provide isolation where airflow is not a concern.  NOTE: This value may represent available beds included in the counts of other types.  </xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="OperatingRooms">
+										<xs:annotation>
+											<xs:documentation>Capacity status for operating rooms which are equipped staffed and could be made available for patient care in a short period of time.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="SubCategoryBedType" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>The name of the sub-category bed type. Each bed type (AdultICU, MedicalSurgical, etc.) may optionally contain a collection of named sub-categories. Each bed type may have many one or more named sub-type categories. 
+- If one or more sub category bed types are used, they must be preceded by the parent BedType element. In this case, CapacityStatus of the Bed Type CANNOT be Not Available. 
+Each parent BedType element and its associated sub-category bed types must be encapsulated with a BedCapacity element. 
+If the capacity counts of sub-category beds are specified, they need not equal the capacity count of the parent bed type. 
+In general, if capacities of are specified using sub-category bed types, then only the CapacityStatus of the parent bed type should be used, and this should reflect an Available value. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Capacity" type="Capacity" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Container element to define the capacity information of each specified bed type or sub category bed type.  </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="CommentText" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceCoverageStatus">
+		<xs:annotation>
+			<xs:documentation>Container element of all the elements of service coverage. This includes both the necessary staff and facilities.  Indicator of the availability of specialty service coverage.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Burn" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The availability of Burn center services. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CardiologyIndicator" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The container element for specifying the availability of Cardiology services.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="Cardiology" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The availability of Cardiology services. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="CardiologySubType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The container element for specifying the availability of Cardiology services that are broken down into sub-types.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="CardiologyInvasive" type="xs:boolean" minOccurs="0"/>
+									<xs:element name="CardiologyNonInvasive" type="xs:boolean" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Dialysis" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The availability of dialysis services. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmergencyDepartment" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The availability of Emergency Department services. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HyperbaricChamber" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The availability of hyperbaric chamber services for decompression and/or wound care.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InfectiousDisease" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The availability of Infectious Diseases. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Neonatology" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The availability of Neonatology services.  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NeurologyIndicator" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The container element for specifying the availability of Neurology services.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="Neurology" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The availability of OBGYN services</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="NeurologySubType" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="NeurologyInvasive" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of Neurology-Invasive services, including invasive catheterization. </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="NeurologyNonInvasive" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of Neurology-Non-Invasive services with no invasive catheterization capability.  </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OBGYNIndicator" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The container element for specifying the availability of OBGYN services.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="OBGYN" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The availability of OBGYN services. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="OBGYNSubType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The availability of OBGYN services</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="OBGYNWithLaborDelivery" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Availability of OBGYN with labor delivery. </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="OBGYNWithoutLaborDelivery" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Sub-type element of the OBGYN Services. Availability of Labor Delivery services. </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Ophthalmology" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The availability of Ophthalmology services.  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Orthopedic" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The availability of Orthopedic services.  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pediatrics" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The availability of pediatric services. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PsychiatricIndicator" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The container element for specifying the availability of psychiatric services.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="Psychiatric" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The availability of psychiatric services. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="PsychiatricSubType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The availability of psychiatric services. </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="PsychiatricAdultGeneral" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Availability of Adult General Psychiatric services. </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="PsychiatricPediatric" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Availability of Pediatric Psychiatric services. </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SurgeryIndicator" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The container element for specifying the availability of surgery services.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="Surgery" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The availability of surgery services. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SurgerySubType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The availability of general surgery services.   </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="General" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of general surgical services.  </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="AdultGeneralSurgery" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of adult general services.  </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Pediatrics" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of Pediatrics general surgical services. </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Orthopedics" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of Orthopedic surgical services.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Neurosurgery" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of Neurosurgery services. </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Facial" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of facial surgical services. </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="CardioThoracic" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of cardiothoracic surgical services.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Hand" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of hand surgery services.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Reimplantation" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of reimplantation surgical services.  </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Spinal" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of spinal surgical services.  </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Vascular" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of vascular surgical services. </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Anesthesia" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of anesthesia services. </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TransportServicesIndicator" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The container element for specifying the availability of transport services.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="TransportServices" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The availability of transport services. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="TransportServicesSubType" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="AmbulanceServices" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of ground transport services. </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="AirTransportServices" type="xs:boolean" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>The availability of air transport services. </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TraumaCenterServicesIndicator" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The container element for specifying the availability of Trauma Center Services and its service level. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TraumaCenterServices" type="xs:boolean" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The availability of trauma center services. </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="TraumaCenterServicesLevel" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The service level of the trauma center. </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Level1"/>
+									<xs:enumeration value="Level2"/>
+									<xs:enumeration value="Level3"/>
+									<xs:enumeration value="Level4"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="CommentText" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HospitalFacilityStatus">
+		<xs:annotation>
+			<xs:documentation>The container of all of the elements related to the status of the facility.  </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="HospitalEOCStatus" default="Inactive" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Whether the Hospital EOC is currently operating.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Active"/>
+						<xs:enumeration value="Inactive"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="HospitalEOCPlan" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Whether the Hospital EOC has activated its Emergency Operations Plan (EOP).</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Active"/>
+						<xs:enumeration value="Inactive"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ClinicalStatus" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The clinical status of the facility. </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Normal">
+							<xs:annotation>
+								<xs:documentation>Hospital clinical resources are operating within normal conditions.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Full">
+							<xs:annotation>
+								<xs:documentation>Hospital clinical resources are exceeded and acceptable care cannot be
+                                provided to additional patients. Diversion or community surge response is required.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DeconCapacity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The status of Decon Capacity</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="DeconCapacityStatus" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The capacity for chemical/biological/radiological patient decontamination.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Inactive"/>
+									<xs:enumeration value="Open"/>
+									<xs:enumeration value="Full"/>
+									<xs:enumeration value="Exceeded"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="AmbulatoryPatientsDeconCapacity" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The number of ambulatory patients which can be decontaminated over time (typically an hour). </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="NonAmbulatoryPatientsDeconCapacity" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The number of non-ambulatory patients which can be decontaminated over time (typically an hour). </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MorgueCapacity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The status of the morgue capacity. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MorgueCapacityStatus" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The status of the morgue capacity. </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Open"/>
+									<xs:enumeration value="Full"/>
+									<xs:enumeration value="Exceeded"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="MorgueCapacityUnits" type="xs:integer" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>The number of vacant/available units to which victims can be immediately transported.  </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FacilityStatus" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The status of the facility.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Normal">
+							<xs:annotation>
+								<xs:documentation>No conditions exist that adversely affect
+                                the general operations of the facility.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Compromised">
+							<xs:annotation>
+								<xs:documentation>General operations of the facility have been
+                                affected due to damage, operating on emergency backup systems,
+                                or facility contamination.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Evacuating">
+							<xs:annotation>
+								<xs:documentation>Indicates that a hospital is in the process
+                                of a partial or full evacuation.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Closed">
+							<xs:annotation>
+								<xs:documentation>Indicates that a hospital is no longer capable
+                                of providing services and only emergency services/restoration
+                                personnel remain in the facility.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="SecurityStatus" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The status of security procedures in the hospital.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Normal">
+							<xs:annotation>
+								<xs:documentation>The hospital is operating under routine security
+                                procedures.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Elevated">
+							<xs:annotation>
+								<xs:documentation>The hospital has activated increased security
+                                procedures (awareness, surveillance) due to a potential threat,
+                                or specific security related event i.e. increase in local threat
+                                level, VIP, bomb threat.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="RestrictedAccess">
+							<xs:annotation>
+								<xs:documentation>Based on security needs, the hospital has
+                                activated procedures to allow access to the facility through
+                                a reduced number of controlled entrances.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Lockdown">
+							<xs:annotation>
+								<xs:documentation>Based on security needs, the hospital has
+                                activated procedures to control entry to the facility to
+                                authorized persons only.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Quarantine">
+							<xs:annotation>
+								<xs:documentation>Based on a public health emergency, the
+                                entry and exit of the facility is controlled by public
+                                health officials.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Activity24Hr" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The container element for reporting activities in the last 24 hours.  </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Admissions" minOccurs="0"/>
+						<xs:element name="Discharges" minOccurs="0"/>
+						<xs:element name="Deaths" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="CommentText" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HospitalResourcesStatus">
+		<xs:annotation>
+			<xs:documentation>The container for all the elements related to the operations of the facility.  </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Staffing" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The status of staffing.  </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Adequate">
+							<xs:annotation>
+								<xs:documentation>Meets the current needs.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Insufficient">
+							<xs:annotation>
+								<xs:documentation>Current needs not being met.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="FacilityOperations" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The status of supplies necessary for facility operations.  </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Adequate">
+							<xs:annotation>
+								<xs:documentation>Meets the current needs.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Insufficient">
+							<xs:annotation>
+								<xs:documentation>Current needs not being met.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ClinicalOperations" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The status of supplies necessary for clinical operations. </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Adequate">
+							<xs:annotation>
+								<xs:documentation>Meets the current needs.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Insufficient">
+							<xs:annotation>
+								<xs:documentation>Current needs not being met.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ResourcesInformationText" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The type of resources and their status or count.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="CommentText" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TriageCount">
+		<xs:annotation>
+			<xs:documentation>The number of each triage patient type the overall hospital currently has.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TriageCodeListURN" type="xs:anyURI" default="urn:oasis:names:tc:emergency:have:1.0:triagecolorcode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The name of a certified list maintained by the Community of Interest (COI) for the value referenced. If no TriageCodeListURN is specified, the default list should be used. Default Value: urn: oasis:names:tc:emergency:have:1.0:triagecolorcode.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence>
+				<xs:element name="TriageCode" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>The container element to specify the triage values and their quantity</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TriageCodeValue" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>The list of values must be from the list identified in TriageCodeListURN. Default Values - Red: Number of victims with immediate needs - Yellow: Number of victims with delayed needs - Green: Number of victims with minor needs -Black: Number of deceased victims. If a TriageCodeValue is specified, a TriageCountQuantity element must be specified. </xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Red"/>
+										<xs:enumeration value="Yellow"/>
+										<xs:enumeration value="Green"/>
+										<xs:enumeration value="Black"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="TriageCountQuantity" type="xs:integer" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>The integer value associated with the TrageCodeValue. It refers to the preceeding TriageCodeValue element.  If a TriageCodeValue is specified, a TriageCountQuantity element must be specified. </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Capacity">
+		<xs:annotation>
+			<xs:documentation>Top level complex schema type defining bed capacity counts given a specific type of bed.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CapacityStatus" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicator of status of bed type or sub-category bed type.  </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Vacant/Available"/>
+						<xs:enumeration value="NotAvailable"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="AvailableCount" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The number of vacant/available beds to which patients can be immediately transported.  These must include supporting space, equipment, medical material, ancillary and support services and staff to operate under normal circumstances. These beds are licensed, physically available and have staff on hand to attend to the patient who occupies the bed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BaselineCount" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The maximum (baseline) number of beds in this category.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalCapacityCount24Hr" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Estimate how many beds above the current number could be made vacant/available within 24 hours. This includes institutional surge beds as well as beds made available by discharging/transferring patients.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalCapacityCount72Hr" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Estimate how many beds above the current number could be made vacant/available within 72 hours. This includes institutional surge beds as well as beds made available by discharging/transferring patients.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Offload">
+		<xs:annotation>
+			<xs:documentation>Indicator of offload times of ambulance capabilities.  The time it takes to transfer care of a patient to hospital staff, thereby freeing the transport for assignment. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="EMSOffloadStatus" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indicator of offload times of ambulance capabilities.  </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Normal">
+							<xs:annotation>
+								<xs:documentation>The time required to offload a patient is typical.</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="Delayed">
+							<xs:annotation>
+								<xs:documentation>The time required to offload a patient is longer than typical. </xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="EMSOffloadMinutes" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Average offload time in minutes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

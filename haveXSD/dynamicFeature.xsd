@@ -1,0 +1,115 @@
+<xs:schema targetNamespace="http://www.opengis.net/gml" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" version="3.1.1.2">
+	<xs:annotation>
+		<appinfo source="urn:opengis:specification:gml:schema-xsd:dynamicFeature:3.1.1"/>
+		<xs:documentation xml:lang="en">Basic support for tracking moving objects and objects with changing state.
+			
+			GML is an OGC Standard.
+			Copyright (c) 2001,2005,2010 Open Geospatial Consortium.
+			To obtain additional rights of use, visit http://www.opengeospatial.org/legal/ .
+		</xs:documentation>
+	</xs:annotation>
+	<!-- ================================================================== -->
+	<xs:include schemaLocation="gml.xsd"/>
+	<xs:include schemaLocation="feature.xsd"/>
+	<xs:include schemaLocation="direction.xsd"/>
+	<!-- ================================================================== -->
+	<element name="dataSource" type="gml:StringOrRefType"/>
+	<element name="status" type="gml:StringOrRefType"/>
+	<!-- ================================================================== -->
+	<element name="_TimeSlice" type="gml:AbstractTimeSliceType" abstract="true" substitutionGroup="gml:_GML"/>
+	<!-- ===================================== -->
+	<complexType name="AbstractTimeSliceType" abstract="true">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">A timeslice encapsulates the time-varying properties of a dynamic feature--it 
+        must be extended to represent a timestamped projection of a feature. The dataSource 
+        property describes how the temporal data was acquired.</xs:documentation>
+		</xs:annotation>
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element ref="gml:validTime"/>
+					<element ref="gml:dataSource" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<element name="MovingObjectStatus" type="gml:MovingObjectStatusType" substitutionGroup="gml:_TimeSlice"/>
+	<!-- ===================================== -->
+	<complexType name="MovingObjectStatusType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">This type encapsulates various dynamic properties of moving objects        
+             (points, lines, regions). It is useful for dealing with features whose        
+             geometry or topology changes over time.</xs:documentation>
+		</xs:annotation>
+		<complexContent>
+			<extension base="gml:AbstractTimeSliceType">
+				<sequence>
+					<element ref="gml:location"/>
+					<element name="speed" type="gml:MeasureType" minOccurs="0"/>
+					<element name="bearing" type="gml:DirectionPropertyType" minOccurs="0"/>
+					<element name="acceleration" type="gml:MeasureType" minOccurs="0"/>
+					<element name="elevation" type="gml:MeasureType" minOccurs="0"/>
+					<element ref="gml:status" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<element name="history" type="gml:HistoryPropertyType"/>
+	<!-- ===================================== -->
+	<complexType name="HistoryPropertyType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The history relationship associates a feature with a sequence of TimeSlice instances.</xs:documentation>
+		</xs:annotation>
+		<sequence maxOccurs="unbounded">
+			<element ref="gml:_TimeSlice"/>
+		</sequence>
+	</complexType>
+	<!-- ================================================================== -->
+	<element name="track" type="gml:TrackType" substitutionGroup="gml:history"/>
+	<!-- ===================================== -->
+	<complexType name="TrackType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">The track of a moving object is a sequence of specialized timeslices        that indicate the status of the object.</xs:documentation>
+		</xs:annotation>
+		<complexContent>
+			<restriction base="gml:HistoryPropertyType">
+				<sequence maxOccurs="unbounded">
+					<element ref="gml:MovingObjectStatus"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<!-- ================================================================== -->
+	<group name="dynamicProperties">
+		<sequence>
+			<element ref="gml:validTime" minOccurs="0"/>
+			<element ref="gml:history" minOccurs="0"/>
+			<element ref="gml:dataSource" minOccurs="0"/>
+		</sequence>
+	</group>
+	<!-- ================================================================== -->
+	<complexType name="DynamicFeatureType">
+		<xs:annotation>
+			<xs:documentation>A dynamic feature may possess a history and/or a timestamp.</xs:documentation>
+		</xs:annotation>
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<group ref="gml:dynamicProperties"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ===================================== -->
+	<complexType name="DynamicFeatureCollectionType">
+		<xs:annotation>
+			<xs:documentation>A dynamic feature collection may possess a history and/or a timestamp.</xs:documentation>
+		</xs:annotation>
+		<complexContent>
+			<extension base="gml:FeatureCollectionType">
+				<group ref="gml:dynamicProperties"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<!-- ===================================== -->
+</xs:schema>
