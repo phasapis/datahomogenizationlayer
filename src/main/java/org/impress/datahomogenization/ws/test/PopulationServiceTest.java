@@ -34,11 +34,33 @@ public class PopulationServiceTest extends ApplicationTests {
     @Test
     public void validateGetCityPopulation() throws Exception {
 
-        mockMvc.perform(get("/population/Abenbury"))
+        mockMvc.perform(get("/population/city/Abenbury"))
                 .andExpect(status().isOk())
                 .andExpect(
                         content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(jsonPath("$.name").value("Abenbury"));
 
-    }    
+    }  
+    
+    @Test
+    public void validateGetPointPopulation() throws Exception {
+
+        mockMvc.perform(get("/population/point?lat=36.95&long=14.5333"))
+                .andExpect(status().isOk())
+                .andExpect(
+                        content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.population").value(61));
+
+    }  
+    
+    @Test
+    public void validateGetAreaPopulation() throws Exception {
+
+        mockMvc.perform(get("/population/area?lat1=0&long1=70&lat2=0&long2=100&lat3=-80&long3=100&lat4=-80&long4=70"))
+                .andExpect(status().isOk())
+                .andExpect(
+                        content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$[0].population").value(4089));
+
+    }     
 }

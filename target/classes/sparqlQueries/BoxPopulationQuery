@@ -1,0 +1,24 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+select distinct ?city ?population  where {
+          ?city <http://www.geonames.org/ontology#population> ?population.
+          ?building <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat.
+          ?building <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?long.
+          FILTER (?lat < xsd:float([lat1] + 0.001) 
+             &&
+                  ?long > xsd:float([long1] - 0.001) 
+             &&
+                  ?lat < xsd:float([lat2] + 0.001) 
+             &&
+                  ?long < xsd:float([long2] + 0.001) 
+             &&
+                  ?lat > xsd:float([lat3] - 0.001) 
+             &&
+                  ?long < xsd:float([long3] + 0.001) 
+             &&
+                  ?lat > xsd:float([lat4] - 0.001) 
+             &&
+                  ?long > xsd:float([long4] - 0.001)
+             )
+
+}

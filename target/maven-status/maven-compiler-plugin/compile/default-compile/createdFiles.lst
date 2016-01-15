@@ -11,7 +11,6 @@ oasis/names/tc/ciq/xpil/_3/Qualifications$Qualification$Institution.class
 oasis/names/tc/ciq/xpil/_3/ContactNumbers.class
 oasis/names/tc/ciq/xpil/_3/PhysicalInfo$Allergy.class
 oasis/names/tc/ciq/xal/_3/SubLocalityTypeList.class
-org/datahomogenization/ws/service/PopulationServiceBean.class
 oasis/names/tc/emergency/edxl/have/_1/ServiceCoverageStatus$PsychiatricIndicator$PsychiatricSubType.class
 oasis/names/tc/ciq/xal/_3/PremisesTypeList.class
 oasis/names/tc/ciq/xpil/_3/PhysicalInfo$Disability.class
@@ -20,7 +19,6 @@ oasis/names/tc/ciq/xal/_3/AddressType$Premises$SubPremises.class
 oasis/names/tc/emergency/edxl/have/_1/ServiceCoverageStatus$PsychiatricIndicator.class
 oasis/names/tc/ciq/xal/_3/AddressType$LocationByCoordinates$Latitude.class
 oasis/names/tc/ciq/xal/_3/NameType.class
-org/datahomogenization/ws/test/PopulationServiceTest.class
 oasis/names/tc/ciq/xpil/_3/BirthInfo$BirthInfoElement.class
 net/opengis/gml/AbstractCurveSegmentType.class
 oasis/names/tc/emergency/edxl/have/_1/EmergencyDepartmentStatus$EMSTraffic.class
@@ -63,7 +61,6 @@ oasis/names/tc/ciq/xal/_3/IdentifierType.class
 net/opengis/gml/ObjectFactory.class
 oasis/names/tc/ciq/xpil/_3/PhysicalInfo$Feature.class
 oasis/names/tc/ciq/xal/_3/AddressType$PostOffice.class
-org/datahomogenization/ws/repository/PopulationQueryEngine.class
 net/opengis/gml/package-info.class
 oasis/names/tc/emergency/edxl/have/_1/HospitalResourcesStatus.class
 oasis/names/tc/ciq/xpil/_3/ElectronicAddressIdentifierTypeList.class
@@ -83,7 +80,6 @@ oasis/names/tc/ciq/xpil/_3/Occupations$Occupation$OccupationElement.class
 oasis/names/tc/ciq/xal/_3/ThoroughfareType.class
 oasis/names/tc/emergency/edxl/have/_1/TriageCount.class
 oasis/names/tc/ciq/xal/_3/AddressType$LocationByCoordinates$Longitude.class
-org/datahomogenization/ws/service/PopulationService.class
 oasis/names/tc/ciq/xnl/_3/ObjectFactory.class
 oasis/names/tc/ciq/xal/_3/AddressType$FreeTextAddress$AddressLine.class
 oasis/names/tc/ciq/xal/_3/AddressType$PostCode.class
@@ -118,7 +114,6 @@ oasis/names/tc/ciq/xpil/_3/Memberships.class
 oasis/names/tc/ciq/xnl/_3/OrganisationNameTypeList.class
 oasis/names/tc/emergency/edxl/have/_1/ServiceCoverageStatus$TransportServicesIndicator.class
 oasis/names/tc/emergency/edxl/have/_1/HospitalFacilityStatus$MorgueCapacity.class
-org/datahomogenization/ws/test/ApplicationTests.class
 oasis/names/tc/ciq/xpil/_3/Occupations$Occupation.class
 oasis/names/tc/ciq/xal/_3/AddressUsageList.class
 oasis/names/tc/emergency/edxl/have/_1_0/geo_oasis/ObjectFactory.class
@@ -143,7 +138,6 @@ oasis/names/tc/ciq/xpil/_3/Visas$Visa.class
 oasis/names/tc/ciq/xal/_3/ThoroughfareNameTypeList.class
 oasis/names/tc/ciq/xal/_3/AddressType$Thoroughfare.class
 oasis/names/tc/ciq/xal/_3/ThoroughfareType$NameElement.class
-org/datahomogenization/ws/web/api/TestController.class
 oasis/names/tc/ciq/xpil/_3/OrganisationDetailsType.class
 oasis/names/tc/ciq/xpil/_3/Revenues.class
 oasis/names/tc/ciq/xpil/_3/Preferences.class
@@ -192,7 +186,6 @@ oasis/names/tc/ciq/xpil/_3/ElectronicAddressIdentifiers$ElectronicAddressIdentif
 oasis/names/tc/ciq/xpil/_3/Vehicles$Vehicle$VehicleElement.class
 oasis/names/tc/ciq/xpil/_3/DocumentTypeList.class
 oasis/names/tc/ciq/ct/_3/ObjectFactory.class
-org/datahomogenization/ws/web/api/PopulationQueryController.class
 oasis/names/tc/ciq/xal/_3/AddressType$Country.class
 oasis/names/tc/ciq/xal/_3/SubAdministrativeAreaNameTypeList.class
 oasis/names/tc/ciq/xpil/_3/ContactNumbers$ContactNumber$ContactNumberElement.class
@@ -201,7 +194,6 @@ oasis/names/tc/ciq/xal/_3/CountryType$NameElement.class
 oasis/names/tc/ciq/xal/_3/AddressType$GeoRSS.class
 oasis/names/tc/ciq/xal/_3/PremisesType.class
 oasis/names/tc/emergency/edxl/have/_1/ServiceCoverageStatus$NeurologyIndicator.class
-org/datahomogenization/ws/model/CityStats.class
 oasis/names/tc/ciq/xnl/_3/OrganisationNameType.class
 oasis/names/tc/ciq/xpil/_3/CountriesOfResidence$Country.class
 oasis/names/tc/ciq/xpil/_3/Accounts$Account$AccountElement.class
