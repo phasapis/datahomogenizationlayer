@@ -1,3 +1,4 @@
+/home/jim/Projects/repos/skeleton-web-services/src/main/java/org/impress/datahomogenization/ws/web/api/BedsAvailabilityQueryController.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/Relationships.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xal/_3/ThoroughfareType.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/net/opengis/gml/DirectPositionListType.java
@@ -58,6 +59,7 @@
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xal/_3/ThoroughfareNameTypeList.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/Stocks.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/org/impress/datahomogenization/Application.java
+/home/jim/Projects/repos/skeleton-web-services/src/main/java/org/impress/datahomogenization/ws/service/BedsService.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/ObjectFactory.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xal/_3/PostalDeliveryPointTypeList.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/net/opengis/gml/EnvelopeType.java
@@ -77,6 +79,7 @@
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/org/impress/datahomogenization/ws/model/GeoPoint.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xal/_3/DirectionTypeList.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/PersonDetails.java
+/home/jim/Projects/repos/skeleton-web-services/src/main/java/org/impress/datahomogenization/ws/model/BedStats.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xnl/_3/NameLine.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/Revenues.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/OrganisationCategoryTypeList.java
@@ -113,7 +116,9 @@
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/emergency/edxl/have/_1_0/geo_oasis/WhereType.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/net/opengis/gml/PointType.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xal/_3/SubLocalityTypeList.java
+/home/jim/Projects/repos/skeleton-web-services/src/main/java/org/impress/datahomogenization/ws/test/BedsServiceTest.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/emergency/edxl/have/_1_0/geo_oasis/PointPropertyType.java
+/home/jim/Projects/repos/skeleton-web-services/src/main/java/org/impress/datahomogenization/ws/repository/BedsQueryEngine.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/CommunicationMediaTypeList.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/ct/_3/ObjectFactory.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/Occupations.java
@@ -142,5 +147,6 @@
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xal/_3/AdministrativeAreaTypeList.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/org/impress/datahomogenization/ws/model/CityStats.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/emergency/edxl/have/_1/HospitalResourcesStatus.java
+/home/jim/Projects/repos/skeleton-web-services/src/main/java/org/impress/datahomogenization/ws/service/BedsServiceBean.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xnl/_3/package-info.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xnl/_3/PersonNameElementList.java

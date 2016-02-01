@@ -1,0 +1,17 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX vocab: <http://192.168.3.27:2020/vocab/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX map: <http://localhost:2020/resource/#>
+PREFIX db: <http://localhost:2020/resource/>
+
+SELECT   ?bedsAvailable
+WHERE {
+?bedReport vocab:dbo_FIL_BedsReportDetail_HospitalClinicID ?clinic.
+?bedReport vocab:dbo_FIL_BedsReportDetail_HospitalClinicID <http://localhost:2020/resource/dbo/FIL_HospitalsClinics/[clinic_id]>.
+?bedReport vocab:dbo_FIL_BedsReportDetail_BedsReportDetailID ?reportId.
+?bedReport vocab:dbo_FIL_BedsReportDetail_BedsAvailable ?bedsAvailable
+ }
+ORDER BY DESC(?reportId)
+LIMIT 1
