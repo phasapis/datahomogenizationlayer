@@ -1,4 +1,5 @@
 oasis/names/tc/emergency/edxl/have/_1/HospitalBedCapacityStatus$BedCapacity.class
+org/impress/datahomogenization/ws/service/BedsService.class
 oasis/names/tc/emergency/edxl/have/_1_0/geo_oasis/PolygonPropertyType.class
 oasis/names/tc/emergency/edxl/have/_1/ObjectFactory.class
 oasis/names/tc/ciq/xal/_3/AddressType$AdministrativeArea$NameElement.class
@@ -25,10 +26,12 @@ oasis/names/tc/emergency/edxl/have/_1/EmergencyDepartmentStatus$EMSTraffic.class
 oasis/names/tc/ciq/xpil/_3/Stocks$Stock.class
 oasis/names/tc/ciq/xal/_3/SubAdministrativeAreaTypeList.class
 net/opengis/gml/CurveSegmentArrayPropertyType.class
+org/impress/datahomogenization/ws/repository/PopulationQueryEngine.class
 oasis/names/tc/ciq/xal/_3/AddressType$AdministrativeArea.class
 oasis/names/tc/ciq/xpil/_3/PartyType.class
 oasis/names/tc/emergency/edxl/have/_1/ServiceCoverageStatus$NeurologyIndicator$NeurologySubType.class
 oasis/names/tc/ciq/xal/_3/package-info.class
+org/impress/datahomogenization/ws/test/PopulationServiceTest.class
 oasis/names/tc/ciq/xal/_3/AddressType$FreeTextAddress.class
 oasis/names/tc/ciq/xal/_3/SubPremisesTypeList.class
 oasis/names/tc/ciq/xpil/_3/Languages$Language.class
@@ -47,7 +50,9 @@ net/opengis/gml/LinearRingType.class
 oasis/names/tc/ciq/xpil/_3/QualificationElementList.class
 oasis/names/tc/ciq/xal/_3/CountryNameTypeList.class
 oasis/names/tc/ciq/xpil/_3/AccountElementList.class
+org/impress/datahomogenization/ws/model/BedStats.class
 oasis/names/tc/emergency/edxl/have/_1/HospitalBedCapacityStatus.class
+org/impress/datahomogenization/ws/test/BedsServiceTest.class
 net/opengis/gml/AbstractSurfaceType.class
 oasis/names/tc/ciq/xpil/_3/Memberships$Membership.class
 oasis/names/tc/emergency/edxl/have/_1/ServiceCoverageStatus.class
@@ -63,6 +68,7 @@ oasis/names/tc/ciq/xpil/_3/PhysicalInfo$Feature.class
 oasis/names/tc/ciq/xal/_3/AddressType$PostOffice.class
 net/opengis/gml/package-info.class
 oasis/names/tc/emergency/edxl/have/_1/HospitalResourcesStatus.class
+org/impress/datahomogenization/ws/service/PopulationService.class
 oasis/names/tc/ciq/xpil/_3/ElectronicAddressIdentifierTypeList.class
 oasis/names/tc/ciq/xpil/_3/OccupationElementList.class
 oasis/names/tc/ciq/xpil/_3/FreeTextLines.class
@@ -80,6 +86,7 @@ oasis/names/tc/ciq/xpil/_3/Occupations$Occupation$OccupationElement.class
 oasis/names/tc/ciq/xal/_3/ThoroughfareType.class
 oasis/names/tc/emergency/edxl/have/_1/TriageCount.class
 oasis/names/tc/ciq/xal/_3/AddressType$LocationByCoordinates$Longitude.class
+org/impress/datahomogenization/ws/web/api/PopulationQueryController.class
 oasis/names/tc/ciq/xnl/_3/ObjectFactory.class
 oasis/names/tc/ciq/xal/_3/AddressType$FreeTextAddress$AddressLine.class
 oasis/names/tc/ciq/xal/_3/AddressType$PostCode.class
@@ -93,6 +100,7 @@ oasis/names/tc/ciq/xal/_3/AddressType$Premises.class
 oasis/names/tc/emergency/edxl/have/_1_0/geo_oasis/EnvelopePropertyType.class
 oasis/names/tc/ciq/xpil/_3/Habits$Habit.class
 net/opengis/gml/AbstractRingPropertyType.class
+org/impress/datahomogenization/ws/service/PopulationServiceBean.class
 org/impress/datahomogenization/Application.class
 oasis/names/tc/ciq/xal/_3/AddressType$AdministrativeArea$SubAdministrativeArea$NameElement.class
 oasis/names/tc/ciq/xpil/_3/Documents$Document.class
@@ -132,6 +140,7 @@ oasis/names/tc/ciq/xpil/_3/PersonDetailsType.class
 net/opengis/gml/PointType.class
 oasis/names/tc/ciq/xpil/_3/Languages.class
 net/opengis/gml/PolygonType.class
+org/impress/datahomogenization/ws/repository/BedsQueryEngine.class
 oasis/names/tc/ciq/xpil/_3/Memberships$Membership$Organisation.class
 oasis/names/tc/emergency/edxl/have/_1/Capacity.class
 oasis/names/tc/ciq/xpil/_3/Visas$Visa.class
@@ -150,12 +159,15 @@ oasis/names/tc/emergency/edxl/have/_1_0/geo_oasis/LinePropertyType.class
 oasis/names/tc/emergency/edxl/have/_1/ServiceCoverageStatus$SurgeryIndicator$SurgerySubType.class
 oasis/names/tc/ciq/xal/_3/AddressType$Locality$NameElement.class
 net/opengis/gml/CircleByCenterPointType.class
+org/impress/datahomogenization/ws/model/CityStats.class
 oasis/names/tc/ciq/xpil/_3/Favourites.class
 oasis/names/tc/ciq/xpil/_3/ElectronicAddressIdentifiers.class
 oasis/names/tc/emergency/edxl/have/_1_0/geo_oasis/WhereType.class
 oasis/names/tc/ciq/xpil/_3/PhysicalInfo$HealthCondition.class
+org/impress/datahomogenization/ws/test/ApplicationTests.class
 oasis/names/tc/ciq/xnl/_3/OrganisationNameType$NameElement.class
 oasis/names/tc/ciq/ct/_3/DataQualityTypeList.class
+org/impress/datahomogenization/ws/web/api/TestController.class
 oasis/names/tc/ciq/xpil/_3/Favourites$Favourite.class
 oasis/names/tc/ciq/xpil/_3/CommunicationMediaTypeList.class
 oasis/names/tc/ciq/xal/_3/AddressType$RuralDelivery.class
@@ -164,6 +176,7 @@ oasis/names/tc/ciq/xal/_3/AddressTypeList.class
 net/opengis/gml/CurveInterpolationType.class
 oasis/names/tc/ciq/xnl/_3/SubDivisionTypeList.class
 oasis/names/tc/ciq/xpil/_3/Visas$Visa$VisaElement.class
+org/impress/datahomogenization/ws/model/GeoPoint.class
 oasis/names/tc/ciq/xpil/_3/VisaElementList.class
 oasis/names/tc/ciq/xpil/_3/Vehicles$Vehicle.class
 oasis/names/tc/emergency/edxl/have/_1_0/geo_oasis/package-info.class
@@ -225,8 +238,10 @@ oasis/names/tc/ciq/xpil/_3/Habits.class
 oasis/names/tc/ciq/xpil/_3/Accounts$Account$Organisation.class
 oasis/names/tc/ciq/xpil/_3/OrganisationInfo.class
 oasis/names/tc/ciq/xpil/_3/ContactNumberElementList.class
+org/impress/datahomogenization/ws/service/BedsServiceBean.class
 oasis/names/tc/ciq/xpil/_3/Events.class
 oasis/names/tc/ciq/xpil/_3/PersonInfo.class
 oasis/names/tc/ciq/xpil/_3/Vehicles.class
+org/impress/datahomogenization/ws/web/api/BedsAvailabilityQueryController.class
 oasis/names/tc/ciq/xpil/_3/NumberTypeList.class
 oasis/names/tc/emergency/edxl/have/_1/ServiceCoverageStatus$TransportServicesIndicator$TransportServicesSubType.class
