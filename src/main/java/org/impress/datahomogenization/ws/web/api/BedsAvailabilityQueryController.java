@@ -41,6 +41,7 @@ public class BedsAvailabilityQueryController {
 			produces=MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<String> getAvailableBedsXML(@PathVariable("clinicId") Integer clinicId) {	
 		BedStats bedStats = bedService.getClinicAvailableBeds(clinicId);
+		//Wrapper to be inserted here...
 		Capacity capacity = new Capacity();
 		capacity.setAvailableCount(BigInteger.valueOf(bedStats.getAvailabeBeds()));
 		String response = "";
