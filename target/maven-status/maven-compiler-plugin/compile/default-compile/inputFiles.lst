@@ -9,6 +9,7 @@
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/CountriesOfResidence.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xnl/_3/PersonNameTypeList.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/net/opengis/gml/PolygonType.java
+/home/jim/Projects/repos/skeleton-web-services/src/main/java/org/impress/datahomogenization/ws/service/BeansTransformationBean.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/Memberships.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xal/_3/SubAdministrativeAreaTypeList.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/net/opengis/gml/AbstractRingPropertyType.java
@@ -137,6 +138,7 @@
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xnl/_3/ObjectFactory.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/emergency/edxl/have/_1/ObjectFactory.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/Hobbies.java
+/home/jim/Projects/repos/skeleton-web-services/src/main/java/org/impress/datahomogenization/ws/service/BeansTransformation.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/PhysicalInfo.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/net/opengis/gml/AbstractRingType.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/Preferences.java

@@ -17,4 +17,10 @@ public class BedsServiceBean implements BedsService {
 		return bedStats;
 	}
 
+	@Override
+	public BedStats getHospitalAvailableBeds(String hospitalName) {
+		BedStats bedStats = bedsQueryEngine.findHospitalAvailableBedsAllClinics(hospitalName);
+		return bedStats;
+	}
+
 }
