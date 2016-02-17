@@ -151,6 +151,7 @@ oasis/names/tc/ciq/xpil/_3/OrganisationDetailsType.class
 oasis/names/tc/ciq/xpil/_3/Revenues.class
 oasis/names/tc/ciq/xpil/_3/Preferences.class
 oasis/names/tc/ciq/xnl/_3/PersonNameType.class
+org/impress/datahomogenization/ws/service/BeansTransformation.class
 oasis/names/tc/ciq/xnl/_3/NameLine.class
 oasis/names/tc/emergency/edxl/have/_1/TriageCount$TriageCode.class
 oasis/names/tc/ciq/xpil/_3/Nationalities$Country.class
@@ -177,6 +178,7 @@ net/opengis/gml/CurveInterpolationType.class
 oasis/names/tc/ciq/xnl/_3/SubDivisionTypeList.class
 oasis/names/tc/ciq/xpil/_3/Visas$Visa$VisaElement.class
 org/impress/datahomogenization/ws/model/GeoPoint.class
+org/impress/datahomogenization/ws/model/Building.class
 oasis/names/tc/ciq/xpil/_3/VisaElementList.class
 oasis/names/tc/ciq/xpil/_3/Vehicles$Vehicle.class
 oasis/names/tc/emergency/edxl/have/_1_0/geo_oasis/package-info.class
@@ -208,6 +210,7 @@ oasis/names/tc/ciq/xal/_3/AddressType$GeoRSS.class
 oasis/names/tc/ciq/xal/_3/PremisesType.class
 oasis/names/tc/emergency/edxl/have/_1/ServiceCoverageStatus$NeurologyIndicator.class
 oasis/names/tc/ciq/xnl/_3/OrganisationNameType.class
+org/impress/datahomogenization/ws/service/BeansTransformationBean.class
 oasis/names/tc/ciq/xpil/_3/CountriesOfResidence$Country.class
 oasis/names/tc/ciq/xpil/_3/Accounts$Account$AccountElement.class
 oasis/names/tc/ciq/xpil/_3/BirthInfo.class

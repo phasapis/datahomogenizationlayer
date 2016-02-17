@@ -64,6 +64,7 @@
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/ObjectFactory.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xal/_3/PostalDeliveryPointTypeList.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/net/opengis/gml/EnvelopeType.java
+/home/jim/Projects/repos/skeleton-web-services/src/main/java/org/impress/datahomogenization/ws/model/Building.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/PersonDetailsType.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xnl/_3/SubDivisionTypeList.java
 /home/jim/Projects/repos/skeleton-web-services/src/main/java/oasis/names/tc/ciq/xpil/_3/Visas.java

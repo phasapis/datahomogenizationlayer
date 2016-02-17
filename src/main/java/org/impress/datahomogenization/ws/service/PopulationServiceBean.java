@@ -3,6 +3,7 @@ package org.impress.datahomogenization.ws.service;
 import java.util.Collection;
 import java.util.List;
 
+import org.impress.datahomogenization.ws.model.Building;
 import org.impress.datahomogenization.ws.model.CityStats;
 import org.impress.datahomogenization.ws.model.GeoPoint;
 import org.impress.datahomogenization.ws.repository.PopulationQueryEngine;
@@ -29,6 +30,11 @@ public class PopulationServiceBean implements PopulationService {
 	public Collection<CityStats> getAreaPopulation(List<GeoPoint> points) {
 		Collection<CityStats> cityStats = populationQueryEngine.findAreaPopulation(points);
 		return cityStats;
+	}
+	@Override
+	public Collection<Building> getAreaBuildings(List<GeoPoint> points) {
+		Collection<Building> buildings = populationQueryEngine.findAreaBuildings(points);
+		return buildings;
 	}
 
 }

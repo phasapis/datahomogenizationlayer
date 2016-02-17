@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.impress.datahomogenization.ws.model.Building;
 import org.impress.datahomogenization.ws.model.CityStats;
 import org.impress.datahomogenization.ws.model.GeoPoint;
 import org.impress.datahomogenization.ws.service.PopulationService;
@@ -57,5 +58,23 @@ public class PopulationQueryController {
 		points.add(new GeoPoint(lat4,lng4));
 		Collection<CityStats> cityStats = populationService.getAreaPopulation(points);
 		return new ResponseEntity<Collection<CityStats>>(cityStats, HttpStatus.OK);
+	}	
+	@RequestMapping(
+			value="/building/area", 
+			method=RequestMethod.GET,
+			produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public ResponseEntity<Collection<Building>> 
+	getAreaBuilding(
+			@RequestParam("lat1") String lat1, @RequestParam("long1") String lng1,
+			@RequestParam("lat2") String lat2, @RequestParam("long2") String lng2,
+			@RequestParam("lat3") String lat3, @RequestParam("long3") String lng3,
+			@RequestParam("lat4") String lat4, @RequestParam("long4") String lng4) {	
+		List<GeoPoint> points = new ArrayList<GeoPoint>();
+		points.add(new GeoPoint(lat1,lng1));
+		points.add(new GeoPoint(lat2,lng2));
+		points.add(new GeoPoint(lat3,lng3));
+		points.add(new GeoPoint(lat4,lng4));
+		Collection<Building> cityStats = populationService.getAreaBuildings(points);
+		return new ResponseEntity<Collection<Building>>(cityStats, HttpStatus.OK);
 	}		
 }

@@ -35,10 +35,10 @@ public class BeansTransformationBean implements BeansTransformation {
 		BedCapacity bedCapacity = new BedCapacity();
 		Capacity capacity = new Capacity();
 		capacity.setCapacityStatus("Vacant/Available");
-		capacity.setAvailableCount(BigInteger.valueOf(bedStats.getAvailabeBeds() - bedStats.getDeployedBeds()
+		capacity.setAvailableCount(BigInteger.valueOf(bedStats.getAvailabeBeds() 
 				+ bedStats.getSupplementaryBeds()));
 		capacity.setBaselineCount(BigInteger.valueOf(
-				bedStats.getAvailabeBeds()+ bedStats.getSupplementaryBeds()));
+				bedStats.getAvailabeBeds() + bedStats.getDeployedBeds() + bedStats.getSupplementaryBeds()));
 		bedCapacity.getCapacity().add(capacity);
 		hospitalBedCapacityStatus.getBedCapacity().add(bedCapacity);
 	
