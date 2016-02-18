@@ -32,8 +32,8 @@ public class PopulationServiceBean implements PopulationService {
 		return cityStats;
 	}
 	@Override
-	public Collection<Building> getAreaBuildings(List<GeoPoint> points) {
-		Collection<Building> buildings = populationQueryEngine.findAreaBuildings(points);
+	public Collection<Building> getAreaBuildings(List<GeoPoint> points, String type) {
+		Collection<Building> buildings = populationQueryEngine.findAreaBuildings(points, type);
 		return buildings;
 	}
 

@@ -60,11 +60,12 @@ public class PopulationQueryController {
 		return new ResponseEntity<Collection<CityStats>>(cityStats, HttpStatus.OK);
 	}	
 	@RequestMapping(
-			value="/building/area", 
+			value="/poi", 
 			method=RequestMethod.GET,
 			produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public ResponseEntity<Collection<Building>> 
 	getAreaBuilding(
+			@RequestParam("type") String type,
 			@RequestParam("lat1") String lat1, @RequestParam("long1") String lng1,
 			@RequestParam("lat2") String lat2, @RequestParam("long2") String lng2,
 			@RequestParam("lat3") String lat3, @RequestParam("long3") String lng3,
@@ -74,7 +75,7 @@ public class PopulationQueryController {
 		points.add(new GeoPoint(lat2,lng2));
 		points.add(new GeoPoint(lat3,lng3));
 		points.add(new GeoPoint(lat4,lng4));
-		Collection<Building> cityStats = populationService.getAreaBuildings(points);
+		Collection<Building> cityStats = populationService.getAreaBuildings(points, type);
 		return new ResponseEntity<Collection<Building>>(cityStats, HttpStatus.OK);
 	}		
 }

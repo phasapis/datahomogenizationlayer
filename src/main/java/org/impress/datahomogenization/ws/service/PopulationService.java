@@ -11,5 +11,5 @@ public interface PopulationService {
 	CityStats getCityPopulation(String city);
 	CityStats getPointPopulation(String lat, String lng);
 	Collection<CityStats> getAreaPopulation(List<GeoPoint> points);
-	Collection<Building> getAreaBuildings(List<GeoPoint> points);
+	Collection<Building> getAreaBuildings(List<GeoPoint> points, String type);
 }

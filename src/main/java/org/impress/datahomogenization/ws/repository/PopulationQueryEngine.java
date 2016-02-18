@@ -151,7 +151,7 @@ public class PopulationQueryEngine {
 	    return cityStatsCollection;
 					
 	}
-	public Collection<Building> findAreaBuildings(List<GeoPoint> points) {
+	public Collection<Building> findAreaBuildings(List<GeoPoint> points, String type) {
 		ApplicationContext appContext = new ClassPathXmlApplicationContext();
 		org.springframework.core.io.Resource resource = appContext.getResource(
 				"classpath:sparqlQueries/BuildingsInBoxQuery");
@@ -169,7 +169,8 @@ public class PopulationQueryEngine {
 			e1.printStackTrace();
 			return null;
 		}
-			List<String> params = new ArrayList<String>();
+		List<String> params = new ArrayList<String>();
+		params.add(type.substring(0, 1).toUpperCase() + type.substring(1));
 		for (GeoPoint point : points) {
 			params.add(point.getLat());
 			params.add(point.getLng());
@@ -183,10 +184,13 @@ public class PopulationQueryEngine {
 	    while (results.hasNext() )
 	    {
 	      QuerySolution soln = results.nextSolution();
-	      
-	      Literal l = soln.getLiteral("population") ;   // Get a result variable - must be a literal
+	      	      
 	      Building building = new Building();
-	      building.setBuilding((String) soln.getResource("building").getURI());
+	      building.setArtifact((String) soln.getResource("building").getURI());
+	      GeoPoint geopoint = new GeoPoint(
+	    		  soln.getLiteral("lat").getString(),
+	    		  soln.getLiteral("long").getString());
+	      building.setCoords(geopoint);
 	      buildingsCollection.add(building);
 	    } 
 	    return buildingsCollection;					

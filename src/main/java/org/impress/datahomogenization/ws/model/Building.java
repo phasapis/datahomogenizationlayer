@@ -1,13 +1,31 @@
 package org.impress.datahomogenization.ws.model;
 
 public class Building {
-	String building;
+	String artifact;
+	GeoPoint coords;
+	String type;
 
-	public String getBuilding() {
-		return building;
+	public String getArtifact() {
+		return artifact;
 	}
 
-	public void setBuilding(String building) {
-		this.building = building;
+	public void setArtifact(String artifact) {
+		this.artifact = artifact;
+	}
+
+	public GeoPoint getCoords() {
+		return coords;
+	}
+
+	public void setCoords(GeoPoint coords) {
+		this.coords = coords;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }
