@@ -42,6 +42,7 @@ oasis/names/tc/ciq/xal/_3/ObjectFactory.class
 oasis/names/tc/ciq/xpil/_3/Documents$Document$IssuerName.class
 oasis/names/tc/emergency/edxl/have/_1/ServiceCoverageStatus$CardiologyIndicator.class
 oasis/names/tc/ciq/xpil/_3/PhysicalInfo$BodyMark.class
+org/impress/datahomogenization/ws/web/api/WeatherQueryController.class
 oasis/names/tc/emergency/edxl/have/_1/ServiceCoverageStatus$OBGYNIndicator.class
 oasis/names/tc/ciq/xal/_3/AddressType$Locality$SubLocality.class
 oasis/names/tc/emergency/edxl/have/_1/ServiceCoverageStatus$OBGYNIndicator$OBGYNSubType.class

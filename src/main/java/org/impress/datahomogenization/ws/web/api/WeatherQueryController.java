@@ -1,5 +1,7 @@
 package org.impress.datahomogenization.ws.web.api;
 
+import org.impress.datahomogenization.ws.model.forecast.WeatherForecast;
+import org.impress.datahomogenization.ws.model.weathercurrent.WeatherCurrent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,44 +16,75 @@ import org.springframework.web.client.RestTemplate;
 public class WeatherQueryController {
 	@Value("${openweathermap.appkey}")
 	private String appKey;
-	@Value("${openweathermap.area.restendpoint}")
-	private String areaEndpoint;
-	@Value("${openweathermap.circle.restendpoint}")
-	private String cirlcleEndpoint;	
+	@Value("${openweathermap.current.area.restendpoint}")
+	private String currentAreaEndpoint;
+	@Value("${openweathermap.current.circle.restendpoint}")
+	private String currentCirlcleEndpoint;	
+	@Value("${openweathermap.forecast.circle.restendpoint}")
+	private String forecastCirlcleEndpoint;		
 	
 	//
 	//1st version:
 	//Just return the response from open weather map for cities in rectangle
 	//	
 	@RequestMapping(
-			value="/weather/area", 
+			value="/weather/current/area", 
 			method=RequestMethod.GET,
 			produces=MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<String> getWeatherInRectangle(
+	public ResponseEntity<WeatherCurrent> getWeatherInRectangle(
 			@RequestParam("lngLeft") String lngLeft,
 			@RequestParam("latBottom") String latBottom,
 			@RequestParam("lngRight") String lngRight,
 			@RequestParam("latTop") String latTop) {
 		RestTemplate restTemplate = new RestTemplate();
-		String restEndpoint = areaEndpoint+lngLeft+","+latBottom+","+lngRight+","+latTop+",100";
+		String restEndpoint = currentAreaEndpoint+lngLeft+","+latBottom+","+lngRight+","+latTop+",100";
 		restEndpoint += "&appid="+appKey;
-		String response = restTemplate.getForObject(restEndpoint, String.class);
-		return new ResponseEntity<String>(response, HttpStatus.OK);
+		WeatherCurrent weatherCurrent = 
+				restTemplate.getForObject(restEndpoint, WeatherCurrent.class);			
+		return new ResponseEntity<WeatherCurrent>(weatherCurrent, HttpStatus.OK);
 	}
 	@RequestMapping(
-			value="/weather/circle", 
+			value="/weather/current/circle", 
 			method=RequestMethod.GET,
 			produces=MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<String> getWeatherInCircle(
+	public ResponseEntity<WeatherCurrent> getWeatherInCircle(
 			@RequestParam("lat") String lat,
 			@RequestParam("long") String lng,
 			@RequestParam("cnt") String cnt) {
 		RestTemplate restTemplate = new RestTemplate();
-		String restEndpoint = cirlcleEndpoint+lat+","+lat+"&lon="+lng+","+lng+"&cnt="+cnt;
+		String restEndpoint = currentCirlcleEndpoint+lat+","+lat+"&lon="+lng+","+lng+"&cnt="+cnt;
 		restEndpoint += "&appid="+appKey;
-		String response = restTemplate.getForObject(restEndpoint, String.class);
-		return new ResponseEntity<String>(response, HttpStatus.OK);
+		WeatherCurrent weatherCurrent = 
+				restTemplate.getForObject(restEndpoint, WeatherCurrent.class);			
+		return new ResponseEntity<WeatherCurrent>(weatherCurrent, HttpStatus.OK);
 	}	
+	@RequestMapping(
+			value="/weather/forecast/area", 
+			method=RequestMethod.GET,
+			produces=MediaType.APPLICATION_JSON_VALUE
+	)
+	public ResponseEntity<String> getForecastInRectangle() {
+		return new ResponseEntity<String>("Not Currently Supported", HttpStatus.OK);
+	}
+	@RequestMapping(
+			value="/weather/forecast/circle", 
+			method=RequestMethod.GET,
+			produces=MediaType.APPLICATION_JSON_VALUE
+	)
+	public ResponseEntity<WeatherForecast> getForecastInCircle(
+			@RequestParam("lat") String lat,
+			@RequestParam("long") String lng,
+			@RequestParam(value = "cnt", required=false) String cnt) {
+		RestTemplate restTemplate = new RestTemplate();
+		String restEndpoint = forecastCirlcleEndpoint +
+				"lat=" + lat +
+				"&lon="+lng+
+				"&cnt="+cnt+
+				"&appid="+appKey;
+		WeatherForecast weatherForecast = 
+				restTemplate.getForObject(restEndpoint, WeatherForecast.class);		
+		return new ResponseEntity<WeatherForecast>(weatherForecast, HttpStatus.OK);
+	}		
 }
