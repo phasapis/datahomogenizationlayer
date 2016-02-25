@@ -14,8 +14,10 @@ import org.springframework.web.client.RestTemplate;
 public class WeatherQueryController {
 	@Value("${openweathermap.appkey}")
 	private String appKey;
-	@Value("${openweathermap.restendpoint}")
-	private String endpoint;
+	@Value("${openweathermap.area.restendpoint}")
+	private String areaEndpoint;
+	@Value("${openweathermap.circle.restendpoint}")
+	private String cirlcleEndpoint;	
 	
 	//
 	//1st version:
@@ -26,15 +28,30 @@ public class WeatherQueryController {
 			method=RequestMethod.GET,
 			produces=MediaType.APPLICATION_JSON_VALUE
 	)
-	public ResponseEntity<String> getWeatherinRectangle(
+	public ResponseEntity<String> getWeatherInRectangle(
 			@RequestParam("lngLeft") String lngLeft,
 			@RequestParam("latBottom") String latBottom,
 			@RequestParam("lngRight") String lngRight,
 			@RequestParam("latTop") String latTop) {
 		RestTemplate restTemplate = new RestTemplate();
-		String restEndpoint = endpoint+lngLeft+","+latBottom+","+lngRight+","+latTop+",100";
+		String restEndpoint = areaEndpoint+lngLeft+","+latBottom+","+lngRight+","+latTop+",100";
 		restEndpoint += "&appid="+appKey;
 		String response = restTemplate.getForObject(restEndpoint, String.class);
 		return new ResponseEntity<String>(response, HttpStatus.OK);
 	}
+	@RequestMapping(
+			value="/weather/circle", 
+			method=RequestMethod.GET,
+			produces=MediaType.APPLICATION_JSON_VALUE
+	)
+	public ResponseEntity<String> getWeatherInCircle(
+			@RequestParam("lat") String lat,
+			@RequestParam("long") String lng,
+			@RequestParam("cnt") String cnt) {
+		RestTemplate restTemplate = new RestTemplate();
+		String restEndpoint = cirlcleEndpoint+lat+","+lat+"&lon="+lng+","+lng+"&cnt="+cnt;
+		restEndpoint += "&appid="+appKey;
+		String response = restTemplate.getForObject(restEndpoint, String.class);
+		return new ResponseEntity<String>(response, HttpStatus.OK);
+	}	
 }

@@ -1,13 +1,10 @@
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-select distinct ?building   where {
+select distinct ?building  ?lat ?long where {
           ?building <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat.
           ?building <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?long.
-          {?building rdf:type <http://dbpedia.org/ontology/Building>}
-             UNION
-          {?building rdf:type <http://dbpedia.org/ontology/Airport>} 
-             UNION
-          {?building rdf:type <http://dbpedia.org/ontology/Hospital>}.
+          ?building rdf:type <http://dbpedia.org/ontology/[type]>.
+
           FILTER (?lat > xsd:float([lat1] - 0.001) 
              &&
                   ?long < xsd:float([long1] + 0.001) 
